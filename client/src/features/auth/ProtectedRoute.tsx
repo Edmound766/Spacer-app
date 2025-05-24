@@ -10,7 +10,10 @@ export default function ProtectedRoute({ roles }: { roles: Role[] }) {
   const location = useLocation();
   const user = useAppSelector(userSelector)
 
+
   console.log(user);
+
+
   if (!user) return <Navigate to="/auth/login" state={{ from: location }} replace />;
   if (!roles.includes(user.role_name)) {
     return <Navigate to="/home" replace />;

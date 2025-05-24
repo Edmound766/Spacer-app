@@ -5,9 +5,8 @@ export const adminApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
       query: () => "/admin/users",
-      transformResponse(res: User[]) {
-        return res;
-      },
+      
     }),
   }),
 });
+export const {useGetUsersQuery}= adminApi

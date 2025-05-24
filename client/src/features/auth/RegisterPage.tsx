@@ -1,7 +1,7 @@
 import { loginSchema, registerSchema } from "@/schemas/schema";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
-import { CheckCircleIcon,ArrowRightCircleIcon } from "lucide-react";
+import { CheckCircleIcon, ArrowRightCircleIcon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRegisterMutation } from "./authSlice";
+import { useRegisterMutation } from "./authApi";
 import { Link, useNavigate } from "react-router";
 
 export default function RegisterPage() {
@@ -66,14 +66,18 @@ export default function RegisterPage() {
                   <FormField
                     control={form.control}
                     name="username"
-                    render={({ field }) => <FormItem>
+                    render={({ field }) => (
+                      <FormItem>
                         <FormLabel>Username</FormLabel>
                         <FormControl>
-                            <Input placeholder="John Doe" {...field}/>
+                          <Input placeholder="John Doe" {...field} />
                         </FormControl>
-                        <FormDescription>This is the name that will be visble to others</FormDescription>
-                        <FormMessage/>
-                    </FormItem>}
+                        <FormDescription>
+                          This is the name that will be visble to others
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                   <FormField
                     control={form.control}
@@ -115,9 +119,10 @@ export default function RegisterPage() {
             </CardContent>
             <CardFooter className="flex justify-center">
               <Button variant={"link"}>
-                <Link to={"/auth/login"} replace>
+                <Link to={"/auth/login"} className="flex gap-4" replace>
                   Already have an account?
-                </Link><ArrowRightCircleIcon/>
+                <ArrowRightCircleIcon />
+                </Link>
               </Button>
             </CardFooter>
           </>

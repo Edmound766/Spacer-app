@@ -149,8 +149,11 @@
 
 @layer components {
     .navbar{
-        @apply flex bg-blue-700 w-full h-10 justify-between;
+        @apply flex bg-blue-700 w-3/4 h-10 justify-between;
 
+    }
+    .admin_div{
+        @apply flex-1 shadow-2xl rounded-md m-3 w-auto;
     }
     .layout-page {
         @apply flex flex-col min-h-screen;

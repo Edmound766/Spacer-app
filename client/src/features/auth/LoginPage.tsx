@@ -1,7 +1,7 @@
 import { loginSchema } from "@/schemas/schema";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
-import { ArrowRightCircleIcon, CheckCircleIcon } from "lucide-react";
+import { ArrowRightCircleIcon, CheckCircleIcon, TriangleAlert } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
@@ -22,14 +22,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useLoginMutation } from "./authSlice";
-import {setUser} from "../users/userSlice"
+import { useLoginMutation } from "./authApi";
+import { setUser } from "../users/userSlice";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useAppDispatch } from "@app/hooks";
 
 export default function LoginPage() {
-  const dispatch = useAppDispatch()
-  const [login, { isLoading, isSuccess }] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const [login, { isLoading, isSuccess,isError,error }] = useLoginMutation();
+
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -44,13 +46,13 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: z.infer<typeof loginSchema>) => {
     try {
-     const user = await login(e).unwrap();
-     dispatch(setUser(user))
+      const user = await login(e).unwrap();
+      dispatch(setUser(user));
       setTimeout(() => {
         navigate(from, { replace: true });
       }, 3000);
     } catch (error) {
-      console.error("Error loging in",error);
+      console.error("Error loging in", error);
     }
   };
 
@@ -101,6 +103,10 @@ export default function LoginPage() {
                       </FormItem>
                     )}
                   />
+                  <div className={`${isError?"":"hidden"}`}>
+                    <TriangleAlert/>
+                    {error}
+                  </div>
                   <Button disabled={isLoading} type="submit">
                     Login
                   </Button>
@@ -109,10 +115,10 @@ export default function LoginPage() {
             </CardContent>
             <CardFooter className="flex justify-center">
               <Button variant={"link"}>
-                <Link to={"/auth/register"} replace>
+                <Link to={"/auth/register"} className="flex gap-4" replace>
                   Don't have an account?
-                </Link>
                 <ArrowRightCircleIcon />
+                </Link>
               </Button>
             </CardFooter>
           </>

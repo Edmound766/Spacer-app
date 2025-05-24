@@ -41,10 +41,10 @@ class User(db.Model, SerializerMixin):
     payments: Mapped[set["Payment"]] = relationship(back_populates="client")
     agreements: Mapped[set["Agreement"]] = relationship(back_populates='client')
 
-    serialize_only = ('id', 'username', 'email', 'role_name', 'spaces.name', 'spaces.availability')
+    serialize_only = ('id', 'username', 'email', 'role_name')
 
     @property
-    def role_names(self):
+    def role_name(self):
         return self.role.name
 
     @property

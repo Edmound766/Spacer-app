@@ -1,10 +1,10 @@
-import { useState } from "react";
+import  { useState } from "react";
 import { NavLink } from "react-router";
 import { AlignJustify } from "lucide-react";
 import { Button } from "../ui/button";
 import { useAppDispatch, useAppSelector } from "@app/hooks";
 import { clearUser, userSelector } from "@features/users/userSlice";
-import { useLogoutMutation } from "@features/auth/authSlice";
+import { useLogoutMutation } from "@features/auth/authApi";
 
 //  Removed: import { Button } from '@/components/ui/button';  --  Not a standard import.  Using a standard button.
 
@@ -102,6 +102,23 @@ const Navbar = () => {
             >
               Blog
             </NavLink>
+
+            {user.role_name == "admin" && (
+              <NavLink
+                to="/admin"
+                className={({ isActive }) =>
+                  `text-[gold] hover:bg-blue-600 px-3 py-2 rounded-md transition-colors ${
+                    isActive ? "bg-blue-700" : ""
+                  }`
+                }
+              >
+                Admin
+              </NavLink>
+            )}
+
+            <div className="rounded-full w-10 bg-white">
+              <img width={"40px"} height={"40px"}/>
+            </div>
 
             <Button variant={"secondary"} onClick={handleLogout}>
               Logout

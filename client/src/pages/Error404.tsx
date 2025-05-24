@@ -1,20 +1,34 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link, useLocation } from "react-router";
+import { ArrowLeft,TriangleAlert } from "lucide-react";
 
 export default function Error404() {
-    
-    const location = useLocation()
-    console.log(location);
-    
-     const from = location.state?.from?.pathname || "/";
-    return (
-        <div className="flex flex-col justify-around">
-            <h1>Error 404</h1>
-            <p>Page not found </p>
-            <Button variant={"secondary"}>
+  const location = useLocation();
+  console.log(location);
+  let from = location.state?.from?.pathname || "/";
 
-            <Link to={from} replace> Return</Link>
-            </Button>
-        </div>
-    )
+  if (location.pathname.split("/").includes("admin")) from = "/admin";
+  return (
+    <div className=" container mt-20 flex justify-center">
+      <Card className=" m-3 w-[750px]  gap-10">
+        <CardHeader className="flex flex-col items-center">
+          <CardTitle className="text-orange-400">Error 404 </CardTitle>
+        <CardDescription>Oops wrong page.</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center">
+          <p>Page not found </p>
+          <div>
+          <TriangleAlert className="size-32 text-red-700 "/>
+          </div>
+
+          <Button variant={"link"} className="  underline">
+            <Link to={from} className="flex" replace>
+              <ArrowLeft /><p>Return</p> 
+            </Link>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
