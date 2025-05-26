@@ -26,10 +26,10 @@ import { useLoginMutation } from "./authApi";
 import { setUser } from "../users/userSlice";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useAppDispatch } from "@app/hooks";
-
+// TODO: Do this and that.
 export default function LoginPage() {
   const dispatch = useAppDispatch();
-  const [login, { isLoading, isSuccess,isError,error }] = useLoginMutation();
+  const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
 
 
 
@@ -43,7 +43,7 @@ export default function LoginPage() {
       password: "",
     },
   });
-
+  //### TODO Do this and that
   const handleSubmit = async (e: z.infer<typeof loginSchema>) => {
     try {
       const user = await login(e).unwrap();
@@ -103,9 +103,9 @@ export default function LoginPage() {
                       </FormItem>
                     )}
                   />
-                  <div className={`${isError?"":"hidden"}`}>
-                    <TriangleAlert/>
-                    {error}
+                  <div className={`${isError ? "" : "hidden"}`}>
+                    <TriangleAlert />
+                    {error?.data}
                   </div>
                   <Button disabled={isLoading} type="submit">
                     Login
@@ -117,7 +117,7 @@ export default function LoginPage() {
               <Button variant={"link"}>
                 <Link to={"/auth/register"} className="flex gap-4" replace>
                   Don't have an account?
-                <ArrowRightCircleIcon />
+                  <ArrowRightCircleIcon />
                 </Link>
               </Button>
             </CardFooter>
