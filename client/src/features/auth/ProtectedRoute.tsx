@@ -15,10 +15,13 @@ export default function ProtectedRoute({ roles }: { roles: Role[] }) {
 
 
   if (!user) return <Navigate to="/auth/login" state={{ from: location }} replace />;
-  if (!roles.includes(user.role_name)) {
+  const hasAllRequiredRolesFromSet = Array.from(roles).every(role => user.roles.includes(role));
+
+  console.log(hasAllRequiredRolesFromSet);
+
+  if (!hasAllRequiredRolesFromSet) {
     return <Navigate to="/home" replace />;
   }
-
   console.log(roles);
 
   return (
