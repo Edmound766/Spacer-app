@@ -21,7 +21,9 @@ def seed_availability_test_data():
     db.session.add_all([admin_role, client_role])
     db.session.commit()
 
-    user1 = User(username="john_doe", email="john@example.com", roles=[admin_role])
+    user1 = User(
+        username="john_doe", email="john@example.com", roles=[client_role, admin_role]
+    )
     password = fake.password()
     print(password)
     user1.password = password
