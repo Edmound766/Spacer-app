@@ -1,8 +1,8 @@
 """Initail migration creates all tables.
 
-Revision ID: 77edc52607ff
+Revision ID: 05c307b868e9
 Revises: 
-Create Date: 2025-05-22 23:25:00.875319
+Create Date: 2025-05-30 16:41:09.538751
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '77edc52607ff'
+revision = '05c307b868e9'
 down_revision = None
 branch_labels = None
 depends_on = None
