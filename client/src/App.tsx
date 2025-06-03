@@ -7,9 +7,11 @@ import Error404 from "./pages/Error404";
 import ProtectedRoute from "@features/auth/ProtectedRoute";
 import LoginPage from "@features/auth/LoginPage";
 import RegisterPage from "@features/auth/RegisterPage";
-import Dashboard from "@features/admin/Dashboard";
+import { SidebarProvider } from "@/components/ui/sidebar"
+
 import AdminLayout from "./components/page_layouts/admin_layout";
-import UserProfile from "@features/users/UserProfile";
+import AdminHome from "@features/admin/pages/Homepage";
+import UserPorfile from "@features/users/UserProfile"
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
             <Route index element={<LandingPage />} />
             <Route element={<ProtectedRoute roles={["admin", "client"]} />}>
               <Route path="home" element={<HomePage />} />
-              <Route path="profile" element={<UserProfile />} />
+              <Route path="profile" element={<UserPorfile />} />
             </Route>
 
             <Route path="auth/register" element={<RegisterPage />} />
@@ -29,7 +31,7 @@ function App() {
           </Route>
           <Route path="/admin" element={
             <SidebarProvider>
-              <Adminlayout />
+              <AdminLayout />
             </SidebarProvider>
           }
           >
