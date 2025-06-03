@@ -27,11 +27,13 @@ function App() {
             <Route path="auth/login" element={<LoginPage />} />
             <Route path="*" element={<Error404 />} />
           </Route>
-          <Route element={<ProtectedRoute roles={["admin"]} />}>
-            <Route path="admin/" element={<AdminLayout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="*" element={<Error404 />} />
-            </Route>
+          <Route path="/admin" element={
+            <SidebarProvider>
+              <Adminlayout />
+            </SidebarProvider>
+          }
+          >
+            <Route index element={<AdminHome />} />
           </Route>
         </Routes>
       </Router>

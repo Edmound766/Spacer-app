@@ -1,11 +1,14 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@/app/store";
 
+type Role = "admin" | "client";
+
+
 export type User = {
   id: string;
   name: string;
   email: string;
-  role_name: "admin" | "client";
+  roles: Role[];
 };
 
 type UserState = {
