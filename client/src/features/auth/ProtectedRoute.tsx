@@ -15,7 +15,7 @@ export default function ProtectedRoute({ roles }: { roles: Role[] }) {
 
 
   if (!user) return <Navigate to="/auth/login" state={{ from: location }} replace />;
-  const hasAllRequiredRolesFromSet = Array.from(roles).every(role => user.roles.includes(role));
+  const hasAllRequiredRolesFromSet = Array.from(roles).some(role => user.roles.includes(role));
 
   console.log(hasAllRequiredRolesFromSet);
 
