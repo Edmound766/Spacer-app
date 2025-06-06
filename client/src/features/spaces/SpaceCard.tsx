@@ -17,11 +17,11 @@ export default function SpaceCard({ props: { name, availability, id, owner_name 
         </CardHeader>
         <CardContent>
           <CardDescription>
-            {name},{availability},{id},{owner_name}
+            {name},{availability ? "Available" : "Not Available"},{id},{owner_name}
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <IsAvailbale></IsAvailbale>
+          {IssAvailbale()}
         </CardFooter>
       </Card>
     </div>

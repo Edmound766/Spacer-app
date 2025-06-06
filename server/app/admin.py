@@ -29,7 +29,7 @@ def add_user():
     if not data:
         return jsonify("Invalid user details")
     try:
-        user = user_schema.load(data, session=db.session)
+        user = user_schema.load(data, session=db.session)  # pyright: ignore
     except ValidationError as e:
         return jsonify(e.messages), 422
 
@@ -99,6 +99,7 @@ def delete_booking(booking_id: int):
 @admin_bp.put("/put")
 def update_booing():
     data = request.get_json()
+    print(data)
     return jsonify(msg="Booking was updated successfuly")
 
 

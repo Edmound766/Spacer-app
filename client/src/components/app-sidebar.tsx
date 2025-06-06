@@ -24,7 +24,7 @@ import {
 const items = [
   {
     title: "Dashboard",
-    url: "/admin",
+    url: "/admin/dashboard",
     icon: LayoutDashboard,
   },
   {
@@ -61,12 +61,11 @@ export default function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton  asChild>
+                  <SidebarMenuButton asChild>
                     <NavLink
                       to={item.url}
                       className={({ isActive }) =>
-                        `text-white hover:bg-blue-600 px-3 py-2 rounded-md transition-colors ${
-                          isActive ? "bg-blue-700" : ""
+                        `text-white hover:bg-blue-600 px-3 py-2 rounded-md transition-colors ${isActive ? "bg-blue-700" : ""
                         }`
                       }
                     >

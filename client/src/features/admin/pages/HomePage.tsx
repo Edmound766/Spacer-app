@@ -1,6 +1,6 @@
 export default function AdminHome() {
   return (
-    <div>AdminHome</div>
+    <div>This is the home page for the admin</div>
   )
 }
 

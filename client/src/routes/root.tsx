@@ -2,7 +2,7 @@ import Footer from "@/components/navigation/Footer.tsx";
 import Navbar from "@/components/navigation/Navbar";
 import {Outlet} from "react-router";
 
-export default function Layout() {
+export default function Root() {
     return (
         <div className="layout-page">
             <div>
